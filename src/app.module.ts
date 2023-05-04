@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { MailModule } from './mail/mail.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { MailModule } from './mail/mail.module';
       }),
     }),
     MailModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

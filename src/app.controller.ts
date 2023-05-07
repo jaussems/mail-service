@@ -8,14 +8,14 @@ export class AppController {
   constructor(
     private readonly appService: AppService,
     private _mailService: MailService,
+    private _configService: ConfigService,
   ) {}
 
   @Get()
-  getHello(config: ConfigService): any {
-    //return this.appService.getHello();
+  getHello(): any {
     return this._mailService.sendUserConfirmation(
       {
-        email: config.get('MAIL_USER'),
+        email: this._configService.get('MAIL_TO_EMAIL'),
         name: 'Jannes',
       },
       'fdsfdsfdsffs',

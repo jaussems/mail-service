@@ -26,14 +26,15 @@ export class MailService {
     });
   }
 
-  async sendUserMessage(user: User, message: IMessage) {
+  async sendUserMessage(user: User, body: IMessage) {
     await this.mailerService.sendMail({
       to: user.email,
       from: this._configService.get('MAIL_USER'),
       subject: 'Website message',
       template: './message',
       context: {
-        message,
+        sender: body.sender,
+        message: body.message,
       },
     });
   }

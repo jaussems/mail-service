@@ -31,7 +31,7 @@ export class MailService {
       to: user.email,
       from: this._configService.get('MAIL_USER'),
       subject: 'Website message',
-      template: './message.hbs',
+      template: './message',
       context: {
         message,
       },

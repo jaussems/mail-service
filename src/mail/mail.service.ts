@@ -1,7 +1,7 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { User } from 'src/user/user.entity';
+import { IMessage, User } from 'src/user/user.entity';
 
 @Injectable()
 export class MailService {
@@ -22,6 +22,18 @@ export class MailService {
         // ✏️ filling curly brackets with content
         name: user.name,
         url,
+      },
+    });
+  }
+
+  async sendUserMessage(user: User, message: IMessage) {
+    await this.mailerService.sendMail({
+      to: user.email,
+      from: this._configService.get('MAIL_USER'),
+      subject: 'Website message',
+      template: './message.hbs',
+      context: {
+        message,
       },
     });
   }

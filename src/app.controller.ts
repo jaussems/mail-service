@@ -21,13 +21,7 @@ export class AppController {
 
   @Get()
   getHello(): any {
-    return this._mailService.sendUserConfirmation(
-      {
-        email: this._configService.get('MAIL_TO_EMAIL'),
-        name: 'Jannes',
-      },
-      'fdsfdsfdsffs',
-    );
+    return 'Hello World!';
   }
   @Post('/message')
   @Header('content-type', 'application/json')

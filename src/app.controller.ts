@@ -25,7 +25,7 @@ export class AppController {
     return 'Hello World!';
   }
   @Post('/message')
-  @Header('content-type', 'application/json')
+  @Header('content-type', 'text/html')
   sendMessage(@Req() req, @Res({ passthrough: true }) res): Promise<void> {
     if (!req.body.sender || !req.body.message) {
       res

@@ -12,7 +12,7 @@ export class MailService {
 
   async sendUserConfirmation(user: User, token: string) {
     const url = `example.com/auth/confirm?token=${token}`;
-
+    const nodemailer = require('nodemailer');
     await this.mailerService.sendMail({
       to: user.email,
       from: this._configService.get('MAIL_USER'), // override default from
@@ -27,6 +27,19 @@ export class MailService {
   }
 
   async sendUserMessage(user: User, body: IMessage) {
+    this.mailerService.addTransporter('outlook', {
+      host: this._configService.get('MAIL_HOST'),
+      port: this._configService.get('MAIL_PORT'),
+      secure: false,
+      auth: {
+        user: this._configService.get('MAIL_USER'),
+        pass: this._configService.get('MAIL_PASSWORD'),
+      },
+      tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: true,
+      },
+    });
     await this.mailerService.sendMail({
       to: user.email,
       from: this._configService.get('MAIL_USER'),

@@ -24,7 +24,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           tls: {
             // do not fail on invalid certs
             ciphers: 'SSLv3',
-            rejectUnauthorized: true,
+            rejectUnauthorized: false,
           },
         },
         defaults: {

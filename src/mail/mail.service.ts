@@ -27,19 +27,19 @@ export class MailService {
   }
 
   async sendUserMessage(user: User, body: IMessage) {
-    this.mailerService.addTransporter('outlook', {
-      host: this._configService.get('MAIL_HOST'),
-      port: this._configService.get('MAIL_PORT'),
-      secure: false,
-      auth: {
-        user: this._configService.get('MAIL_USER'),
-        pass: this._configService.get('MAIL_PASSWORD'),
-      },
-      tls: {
-        // do not fail on invalid certs
-        rejectUnauthorized: true,
-      },
-    });
+    // this.mailerService.addTransporter('outlook', {
+    //   host: this._configService.get('MAIL_HOST'),
+    //   port: this._configService.get('MAIL_PORT'),
+    //   secure: false,
+    //   auth: {
+    //     user: this._configService.get('MAIL_USER'),
+    //     pass: this._configService.get('MAIL_PASSWORD'),
+    //   },
+    //   tls: {
+    //     // do not fail on invalid certs
+    //     rejectUnauthorized: false,
+    //   },
+    // });
     await this.mailerService.sendMail({
       to: user.email,
       from: this._configService.get('MAIL_USER'),

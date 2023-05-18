@@ -11,6 +11,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     MailerModule.forRootAsync({
       useFactory: async (config: ConfigService) => ({
         transport: {
+          service: 'Outlook365',
           host: config.get('MAIL_HOST'),
           port: config.get('MAIL_PORT'),
           secure: false,
@@ -21,6 +22,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           },
           tls: {
             // do not fail on invalid certs
+            ciphers: 'SSLv3',
             rejectUnauthorized: true,
           },
         },

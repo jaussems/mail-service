@@ -14,9 +14,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           service: 'Outlook365',
           host: config.get('MAIL_HOST'),
           port: config.get('MAIL_PORT'),
-          secure: false,
-          secureConnection: false,
-          requireTLS: true,
+          // secure: false,
+          // secureConnection: false,
+          // requireTLS: true,
+
           auth: {
             user: config.get('MAIL_USER'),
             pass: config.get('MAIL_PASSWORD'),
